@@ -856,20 +856,28 @@
                 if (clone) clone.remove();
             }
             venueName.textContent = ticketInfo.venueName;
-            if (ticketInfo.sessionLabel) {
-              // 細い縦線（既存スタイルを流用）
-              const sep = document.createElement('div');
-              sep.className = 'TicketCard_borderForInline__gkqY5';
+            if (ticketInfo.sessionLabel && !venueNameContainer.querySelector('[data-role="session-label"]')) {
+              // コンテナを横並びに
+              venueNameContainer.style.display = 'inline-flex';
+              venueNameContainer.style.alignItems = 'center';
+              venueNameContainer.style.gap = '0.8rem';      // 好みで
             
-              // 「東京公演1部」などのラベル
+              // 区切り線（spanで！）
+              const sep = document.createElement('span');
+              sep.className = 'TicketCard_borderForInline__gkqY5';
+              sep.style.display = 'inline-block';
+              sep.style.margin = '0 .8rem';                 // 余白（任意）
+              sep.setAttribute('aria-hidden', 'true');
+            
+              // ラベル
               const sub = document.createElement('span');
               sub.className = 'Typography_root__axuOu';
               sub.style.cssText =
                 '--color: var(--b5); --bg-color: var(--undefined); --line-num: 1;' +
                 'font-size: 1.2rem; font-weight: 600; white-space: nowrap;';
               sub.textContent = ticketInfo.sessionLabel;
+              sub.setAttribute('data-role', 'session-label');
             
-              // 既存の container(<span id="venueNameContainer">)の末尾に挿入
               venueNameContainer.appendChild(sep);
               venueNameContainer.appendChild(sub);
             }
