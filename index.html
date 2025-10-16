@@ -860,13 +860,16 @@
               // コンテナを横並びに
               venueNameContainer.style.display = 'inline-flex';
               venueNameContainer.style.alignItems = 'center';
-              venueNameContainer.style.gap = '0.8rem';      // 好みで
+              venueNameContainer.style.gap = '0';      // 好みで
             
               // 区切り線（spanで！）
               const sep = document.createElement('span');
-              sep.className = 'TicketCard_borderForInline__gkqY5';
+              //sep.className = 'TicketCard_borderForInline__gkqY5';
               sep.style.display = 'inline-block';
-              sep.style.margin = '0 .8rem';                 // 余白（任意）
+              sep.style.width = '1px';
+              sep.style.height = '1.2em';
+              sep.style.background = 'rgba(0,0,0,.15)';
+              sep.style.margin = '0 .56rem';                // ← 目視一致なら 0.52〜0.64rem で微調整
               sep.setAttribute('aria-hidden', 'true');
             
               // ラベル
